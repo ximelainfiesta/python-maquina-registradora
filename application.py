@@ -17,7 +17,7 @@ while MENU == True:
     USERCON = False #condition that will be killed if user wants to exit
     ADD = True #condition that will be killed if user decides to exit adding items
     while USERCON == False:
-        try:#this is here to prevent mistakes in the input 
+        try:#this is here to prevent mistakes in the input
             USER = input(">")
             if USER == 3: #because it is input, its 3 not "3"
                 USERCON = True #kills the user input
@@ -30,21 +30,24 @@ while MENU == True:
                         IVALUE = float(raw_input("Item Value: "))#converts raw_input into a float
                         SHOP[raw_input("Item: ")] = IVALUE#this is the ecuation for adding in a dicc
                         print SHOP #helps me see my adds - it is temp
-                        print "Do you want to insert another article? Y/N"#after entered an item 
-                        OTRO = raw_input(">") #you ask him if he wants to add another
-                        OTRO = OTRO.lower() #you convert his answer
-                        if OTRO == "y":
-                            ADD = True #returns the condition, in a loop
-                        elif OTRO == "n":
-                            ADD = False #kills the question
-                            USERCON = True #kills the user answer
-                            MENU = True #return to menu
-                        else:
-                            print "Only enter Y or N" #if the user is trying to add something else
+                        print "Do you want to insert another article? Y/N"#after entered an item
+                        ADDAGAIN = False #another block only with the question above
+                        while ADDAGAIN == False:
+                            OTRO = raw_input(">") #you ask him if he wants to add another
+                            OTRO = OTRO.lower() #you convert his answer
+                            if OTRO == "y":
+                                ADDAGAIN = True #kills the add another item block
+                            elif OTRO == "n":
+                                ADDAGAIN = True #kills the add another item block
+                                ADD = False #kills the question
+                                USERCON = True #kills the user answer
+                                MENU = True #return to menu
+                            else:
+                                print "Only enter Y or N" #if the user add something else
                     except ValueError: #if the user enters letters instead of numbers
                         print "Enter only numbers"
             else:
-                pass #if the user is trying to add other numbers other than 123
+                print "Enter only numbers 1, 2 or 3" #if the user add other numbers other than 123
 
         except SyntaxError: #this is applying to everything - take a closer look at this
             print "Enter only numbers 1, 2 or 3"
