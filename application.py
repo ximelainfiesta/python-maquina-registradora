@@ -1,6 +1,24 @@
 # Register Machine Code
 """Starts the Register Machine Program"""
-SHOP = {} #Empty diccionarie
+SHOP = {} #shows the current articles in the store
+CLIENT = [] #List to save CLIENT's products
+
+def bill():#it will make the bill
+    CLIENT.sort()
+    for i in CLIENT:
+        print i
+
+def bill_calc():#it will allow the cashier enter the items to sell
+    while True:
+        try:
+            X = raw_input("Enter the item: ")
+            X = X.lower()
+            if X == "done":
+                bill()
+            else:
+                CLIENT.append(X)
+        except:
+            print "Enter only items"
 
 MENU = True #Condition than allows the menu
 while MENU == True:
@@ -46,6 +64,10 @@ while MENU == True:
                                 print "Only enter Y or N" #if the user add something else
                     except ValueError: #if the user enters letters instead of numbers
                         print "Enter only numbers"
+            elif USER == 2:
+                bill_calc()
+
+
             else:
                 print "Enter only numbers 1, 2 or 3" #if the user add other numbers other than 123
 
