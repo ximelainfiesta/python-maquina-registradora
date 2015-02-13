@@ -15,6 +15,7 @@ def bill_calc():#it will allow the cashier enter the items to sell
             X = X.lower()
             if X == "done":
                 bill()
+                break
             else:
                 CLIENT.append(X)
         except:
@@ -22,21 +23,18 @@ def bill_calc():#it will allow the cashier enter the items to sell
 
 MENU = True #Condition than allows the menu
 while MENU == True:
-    MAIN_MENU = """
+    USERCON = False #condition that will be killed if user wants to exit
+    ADD = True #condition that will be killed if user decides to exit adding items
+    while USERCON == False:
+        try:#this is here to prevent mistakes in the input
+            USER = input("""
 ---------Register Machine's Main Menu---------
 -           What do you want to do?          -
 -                 1. Add an item             -
 -                 2. Sell Articles           -
 -                 3. Exit                    -
 ----------------------------------------------
-""" #My menu's design
-    print MAIN_MENU #prints my beautiful menu
-
-    USERCON = False #condition that will be killed if user wants to exit
-    ADD = True #condition that will be killed if user decides to exit adding items
-    while USERCON == False:
-        try:#this is here to prevent mistakes in the input
-            USER = input(">")
+""")
             if USER == 3: #because it is input, its 3 not "3"
                 USERCON = True #kills the user input
                 MENU = False #kills the menu
