@@ -3,40 +3,42 @@
 SHOP = {} #shows the current articles in the store
 CLIENT = [] #List to save CLIENT's products
 TOTAL = [] #List to keep the total
+CARDS = ["gold", "silver"]
 
+"""FUNCTIONS"""
 
-def bill():
-    print "Your Total is:  ", sum(TOTAL) #this function sums the list
-    print """ How would you like to pay?  
+def bill(): #below the %.2f converts in two digits float
+    """Function to print the Bill's total"""
+    print "Your Total is:  ", "%.2f" %(sum(TOTAL)) #this function sums the list
+    print """ How would you like to pay?
               1. Gold Card              
               2. Silver Card   
               3. None                   
               """ #make this interactive
 #In here must put the other functions to pay because it returns to my menu
 
-
-
-def bill_printing():#it print the bill in order with prices
+def bill_printing():#it prints the bill in order with prices
+    """Function to sort the items and print them like a bill"""
     CLIENT.sort()
     for i in CLIENT:
-        print i,SHOP[i]
+        print i, "%.2f" %(SHOP[i]) #converts it in two decimals
         TOTAL.append(SHOP[i]) #it adds the value to another list
 
-
 def bill_calc():#it will allow the cashier enter the items to sell
-    CALCULO = True
-    while CALCULO == True:
+    """Function that asks the cashier for the item"""
+    calculus = True
+    while calculus == True:
         try:
-            X = raw_input("Enter the item: ")
-            X = X.lower()
-            if X == "done": #sends the program to another function
+            cashier = raw_input("Enter the item: ")
+            cashier = cashier.lower()
+            if cashier == "done": #sends the program to another function
                 bill_printing()
-                CALCULO = False 
-            elif X not in SHOP: #it verifies than the item is in the store 
+                calculus = False
+            elif cashier not in SHOP: #it verifies than the item is in the store
                 print "Item not in store"
             else:
-                CLIENT.append(X) #adds the item to the new list
-        except:
+                CLIENT.append(cashier) #adds the item to the new list
+        except ValueError:
             print "Enter only items"
 
 MENU = True #Condition than allows the menu
