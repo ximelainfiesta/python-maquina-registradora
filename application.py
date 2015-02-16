@@ -3,11 +3,11 @@
 SHOP = {} #shows the current articles in the store
 CLIENT = [] #List to save CLIENT's products
 
-def bill():#it will make the bill
+
+def bill_printing():#it print the bill in order with prices
     CLIENT.sort()
     for i in CLIENT:
-        print i
-
+        print i,SHOP[i]
 
 
 def bill_calc():#it will allow the cashier enter the items to sell
@@ -17,7 +17,7 @@ def bill_calc():#it will allow the cashier enter the items to sell
             X = raw_input("Enter the item: ")
             X = X.lower()
             if X == "done": #sends the program to another function
-                bill()
+                bill_printing()
                 CALCULO = False 
             elif X not in SHOP: #it verifies than the item is in the store 
                 print "Item not in store"
