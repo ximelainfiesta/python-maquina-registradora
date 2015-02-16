@@ -6,7 +6,7 @@ TOTAL = [] #List to keep the total
 
 
 def bill():
-    print "Your Total is:  " #figure out the function tu sum the items
+    print "Your Total is:  ", sum(TOTAL) #this function sums the list
     print """ How would you like to pay?  
               1. Gold Card              
               2. Silver Card   
@@ -20,6 +20,7 @@ def bill_printing():#it print the bill in order with prices
     CLIENT.sort()
     for i in CLIENT:
         print i,SHOP[i]
+        TOTAL.append(SHOP[i]) #it adds the value to another list
 
 
 def bill_calc():#it will allow the cashier enter the items to sell
