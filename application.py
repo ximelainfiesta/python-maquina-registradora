@@ -8,16 +8,21 @@ def bill():#it will make the bill
     for i in CLIENT:
         print i
 
+
+
 def bill_calc():#it will allow the cashier enter the items to sell
-    while True:
+    CALCULO = True
+    while CALCULO == True:
         try:
             X = raw_input("Enter the item: ")
             X = X.lower()
-            if X == "done":
+            if X == "done": #sends the program to another function
                 bill()
-                break
+                CALCULO = False 
+            elif X not in SHOP: #it verifies than the item is in the store 
+                print "Item not in store"
             else:
-                CLIENT.append(X)
+                CLIENT.append(X) #adds the item to the new list
         except:
             print "Enter only items"
 
