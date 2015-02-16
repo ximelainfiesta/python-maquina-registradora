@@ -2,6 +2,18 @@
 """Starts the Register Machine Program"""
 SHOP = {} #shows the current articles in the store
 CLIENT = [] #List to save CLIENT's products
+TOTAL = [] #List to keep the total
+
+
+def bill():
+    print "Your Total is:  " #figure out the function tu sum the items
+    print """ How would you like to pay?  
+              1. Gold Card              
+              2. Silver Card   
+              3. None                   
+              """ #make this interactive
+#In here must put the other functions to pay because it returns to my menu
+
 
 
 def bill_printing():#it print the bill in order with prices
@@ -68,7 +80,8 @@ while MENU == True:
                     except ValueError: #if the user enters letters instead of numbers
                         print "Enter only numbers"
             elif USER == 2:
-                bill_calc()
+                bill_calc() #calls the function that prints my bill
+                bill() #call the function that will print my total
 
 
             else:
