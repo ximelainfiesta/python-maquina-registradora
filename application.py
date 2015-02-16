@@ -7,6 +7,7 @@ TOTAL = []
 DISCOUNT = []
 
 """FUNCTIONS"""
+
 def cards():
     """Function that adds the discount to the bill"""
     des = 0
@@ -19,9 +20,9 @@ def cards():
 
 def bill(): #below the %.2f converts in two digits float
     """Function to print the Bill's PRECIOS"""
-    print "Your subtotal is:  ", "%.2f" %(sum(PRECIOS))#this function sums the list
-    print "Your discount is: ", DISCOUNT
-    
+    print "Your subtotal is: %.2f" %(sum(PRECIOS))#this function sums the list
+    print "Your discount is: %.2f" %(DISCOUNT[0]) #calls the list in 0 and makes it with 2 decimal
+
 
 def bill_printing():#it prints the bill in order with prices
     """Function to sort the items and print them like a bill"""
