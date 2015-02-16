@@ -2,27 +2,33 @@
 """Starts the Register Machine Program"""
 SHOP = {} #shows the current articles in the store
 CLIENT = [] #List to save CLIENT's products
-TOTAL = [] #List to keep the total
-CARDS = ["gold", "silver"]
+PRECIOS = [] #List to keep the PRECIOS
+TOTAL = []
+DISCOUNT = []
 
 """FUNCTIONS"""
+def cards():
+    """Function that adds the discount to the bill"""
+    des = 0
+    if "gold" in TOTAL: #if gold is in the list
+        des += sum(PRECIOS) * 0.05 #add to the variable the discount
+        DISCOUNT.append(des) #send it to the empty list
+    elif "silver" in TOTAL:
+        des += sum(PRECIOS) * 0.02
+        DISCOUNT.append(des)
 
 def bill(): #below the %.2f converts in two digits float
-    """Function to print the Bill's total"""
-    print "Your Total is:  ", "%.2f" %(sum(TOTAL)) #this function sums the list
-    print """ How would you like to pay?
-              1. Gold Card              
-              2. Silver Card   
-              3. None                   
-              """ #make this interactive
-#In here must put the other functions to pay because it returns to my menu
+    """Function to print the Bill's PRECIOS"""
+    print "Your subtotal is:  ", "%.2f" %(sum(PRECIOS))#this function sums the list
+    print "Your discount is: ", DISCOUNT
+    
 
 def bill_printing():#it prints the bill in order with prices
     """Function to sort the items and print them like a bill"""
     CLIENT.sort()
     for i in CLIENT:
         print i, "%.2f" %(SHOP[i]) #converts it in two decimals
-        TOTAL.append(SHOP[i]) #it adds the value to another list
+        PRECIOS.append(SHOP[i]) #it adds the value to another list
 
 def bill_calc():#it will allow the cashier enter the items to sell
     """Function that asks the cashier for the item"""
@@ -33,7 +39,14 @@ def bill_calc():#it will allow the cashier enter the items to sell
             cashier = cashier.lower()
             if cashier == "done": #sends the program to another function
                 bill_printing()
+                cards()
                 calculus = False
+            elif cashier == "gold":
+                TOTAL.append("gold") #it sends gold to an empty list
+            elif cashier == "silver":
+                TOTAL.append("silver")
+            elif cashier == "silver" and "gold":
+                TOTAL.append("gold")
             elif cashier not in SHOP: #it verifies than the item is in the store
                 print "Item not in store"
             else:
