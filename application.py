@@ -6,6 +6,17 @@ PRICES = [] #List to keep the PRICES
 TOTAL = []
 
 """FUNCTIONS"""
+def total():
+    """Function that adds the tax to the total"""
+    return price() + tax()
+
+def tax():
+    """Function that creates the tax"""
+    return price() * 0.12
+
+def price():
+    """Function that rests the discount from the total"""
+    return sum(PRICES) - cards()
 
 def cards():
     """Function that adds the discount to the bill"""
@@ -22,7 +33,9 @@ def bill(): #below the %.2f converts in two digits float
     """Function to print the Bill's PRICES"""
     print "Your subtotal is: %.2f" %(sum(PRICES))#this function sums the list
     print "Your discount is: %.2f" %(cards()) #calls the function with 2 decimals
-
+    print "Tax: %.2f" %(tax()) #calls the tax with 2 decimals
+    print "Your total is: %.2f" %(total()) #Calls the total with 2 decimals
+    print "Thank you for shopping with us"
 
 def bill_printing():#it prints the bill in order with prices
     """Function to sort the items and print them like a bill"""
