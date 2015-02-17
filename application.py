@@ -27,13 +27,15 @@ def cards():
     elif "silver" in TOTAL:
         des = sum(PRICES) * 0.02
         return des
+    else: #if there is no card, will send 0 discount
+        return des
 
 
 def bill(): #below the %.2f converts in two digits float
     """Function to print the Bill's PRICES"""
     print "Your subtotal is: %.2f" %(sum(PRICES))#this function sums the list
     print "Your discount is: %.2f" %(cards()) #calls the function with 2 decimals
-    print "Tax: %.2f" %(tax()) #calls the tax with 2 decimals
+    print "Your Tax is: %.2f" %(tax()) #calls the tax with 2 decimals
     print "Your total is: %.2f" %(total()) #Calls the total with 2 decimals
     print "Thank you for shopping with us"
 
@@ -41,7 +43,7 @@ def bill_printing():#it prints the bill in order with prices
     """Function to sort the items and print them like a bill"""
     CLIENT.sort()
     for i in CLIENT:
-        print i, "%.2f" %(SHOP[i]) #converts it in two decimals
+        print CLIENT.count(i), i, "%.2f" %(SHOP[i]) #converts it in two decimals and it counts the items
         PRICES.append(SHOP[i]) #it adds the value to another list
 
 def bill_calc():#it will allow the cashier enter the items to sell
