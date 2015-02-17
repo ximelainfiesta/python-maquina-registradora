@@ -55,7 +55,6 @@ def bill_calc():#it will allow the cashier enter the items to sell
     while calculus == True:
         try:
             cashier = raw_input("Enter the item: ")
-            cashier = cashier.lower()
             if cashier == "done": #sends the program to another function
                 bill_printing() #calls function
                 calculus = False #kills the function
