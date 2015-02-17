@@ -30,7 +30,6 @@ def cards():
     else: #if there is no card, will send 0 discount
         return des
 
-
 def bill(): #below the %.2f converts in two digits float
     """Function to print the Bill's PRICES"""
     print "Your subtotal is: %.2f" %(sum(PRICES))#this function sums the list
@@ -42,9 +41,13 @@ def bill(): #below the %.2f converts in two digits float
 def bill_printing():#it prints the bill in order with prices
     """Function to sort the items and print them like a bill"""
     CLIENT.sort()
-    for i in CLIENT:
-        print CLIENT.count(i), i, "%.2f" %(SHOP[i]) #converts it in two decimals and it counts the items
+    temp = [] #temporary list
+    for i in CLIENT: #for every item in the dictionary
         PRICES.append(SHOP[i]) #it adds the value to another list
+        if i not in temp: #if the item is not in temp
+            temp.append(i) #lets add it to depurate
+    for i in temp: #for everything in the temporary, count the items
+        print "-", CLIENT.count(i), "", i, "-", "%.2f" %(SHOP[i]), "each" #print w/ their prices
 
 def bill_calc():#it will allow the cashier enter the items to sell
     """Function that asks the cashier for the item"""
