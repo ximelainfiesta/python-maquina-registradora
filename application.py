@@ -2,9 +2,8 @@
 """Starts the Register Machine Program"""
 SHOP = {} #shows the current articles in the store
 CLIENT = [] #List to save CLIENT's products
-PRECIOS = [] #List to keep the PRECIOS
+PRICES = [] #List to keep the PRICES
 TOTAL = []
-DISCOUNT = []
 
 """FUNCTIONS"""
 
@@ -12,16 +11,17 @@ def cards():
     """Function that adds the discount to the bill"""
     des = 0
     if "gold" in TOTAL: #if gold is in the list
-        des += sum(PRECIOS) * 0.05 #add to the variable the discount
-        DISCOUNT.append(des) #send it to the empty list
+        des = sum(PRICES) * 0.05 #add to the variable the discount
+        return des #it returns the discount when called
     elif "silver" in TOTAL:
-        des += sum(PRECIOS) * 0.02
-        DISCOUNT.append(des)
+        des = sum(PRICES) * 0.02
+        return des
+
 
 def bill(): #below the %.2f converts in two digits float
-    """Function to print the Bill's PRECIOS"""
-    print "Your subtotal is: %.2f" %(sum(PRECIOS))#this function sums the list
-    print "Your discount is: %.2f" %(DISCOUNT[0]) #calls the list in 0 and makes it with 2 decimal
+    """Function to print the Bill's PRICES"""
+    print "Your subtotal is: %.2f" %(sum(PRICES))#this function sums the list
+    print "Your discount is: %.2f" %(cards()) #calls the function with 2 decimals
 
 
 def bill_printing():#it prints the bill in order with prices
@@ -29,7 +29,7 @@ def bill_printing():#it prints the bill in order with prices
     CLIENT.sort()
     for i in CLIENT:
         print i, "%.2f" %(SHOP[i]) #converts it in two decimals
-        PRECIOS.append(SHOP[i]) #it adds the value to another list
+        PRICES.append(SHOP[i]) #it adds the value to another list
 
 def bill_calc():#it will allow the cashier enter the items to sell
     """Function that asks the cashier for the item"""
@@ -39,9 +39,8 @@ def bill_calc():#it will allow the cashier enter the items to sell
             cashier = raw_input("Enter the item: ")
             cashier = cashier.lower()
             if cashier == "done": #sends the program to another function
-                bill_printing()
-                cards()
-                calculus = False
+                bill_printing() #calls function
+                calculus = False #kills the function
             elif cashier == "gold":
                 TOTAL.append("gold") #it sends gold to an empty list
             elif cashier == "silver":
@@ -98,8 +97,8 @@ while MENU == True:
                         print "Enter only numbers"
             elif USER == 2:
                 bill_calc() #calls the function that prints my bill
-                bill() #call the function that will print my total
-
+                bill() #call the function that will print my total and discount
+                MENU = True
 
             else:
                 print "Enter only numbers 1, 2 or 3" #if the user add other numbers other than 123
