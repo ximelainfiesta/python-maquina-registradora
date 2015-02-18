@@ -1,11 +1,20 @@
 # Register Machine Code
 """Starts the Register Machine Program"""
+import os
+
 SHOP = {} #shows the current articles in the store
 CLIENT = [] #List to save CLIENT's products
 PRICES = [] #List to keep the PRICES
 TOTAL = []
 
 """FUNCTIONS"""
+def clear():
+    """Cleans the data on screen."""
+    if os.name == "posix":
+        os.system("reset")
+    elif os.name == ("nt"):
+        os.system("cls")
+
 def deletedata():
     """Function that clears the lists for a new sale"""
     del CLIENT[:]
@@ -38,6 +47,7 @@ def cards():
 
 def bill(): #below the %.2f converts in two digits float
     """Function to print the Bill's PRICES"""
+    clear()
     print "Your subtotal is: %.2f" %(sum(PRICES))#this function sums the list
     print "Your discount is: %.2f" %(cards()) #calls the function with 2 decimals
     print "Your Tax is: %.2f" %(tax()) #calls the tax with 2 decimals
@@ -53,6 +63,7 @@ def bill_printing():#it prints the bill in order with prices
         if i not in temp: #if the item is not in temp
             temp.append(i) #lets add it to depurate
     for i in temp: #for everything in the temporary, count the items
+        clear()
         print "-", CLIENT.count(i), "", i, "-", "%.2f" %(SHOP[i]), "each" #print w/ their prices
 
 def bill_calc():#it will allow the cashier enter the items to sell
@@ -62,6 +73,7 @@ def bill_calc():#it will allow the cashier enter the items to sell
         try:
             cashier = raw_input("Enter the item: ")
             if cashier == "done": #sends the program to another function
+                clear()
                 bill_printing() #calls function
                 calculus = False #kills the function
             elif cashier == "gold":
@@ -92,11 +104,13 @@ while MENU == True:
 ----------------------------------------------
 """)
             if USER == 3: #because it is input, its 3 not "3"
+                clear()
                 USERCON = True #kills the user input
                 MENU = False #kills the menu
                 print "Thank you for using us" #prints a byebye message
             #because my condition is up, i start next option, adding items
             elif USER == 1:
+                clear()
                 while ADD == True:
                     try:#it helps me corroborate the raw input
                         IVALUE = float(raw_input("Item Value: "))#converts raw_input into a float
@@ -110,6 +124,7 @@ while MENU == True:
                             if OTRO == "y":
                                 ADDAGAIN = True #kills the add another item block
                             elif OTRO == "n":
+                                clear()
                                 ADDAGAIN = True #kills the add another item block
                                 ADD = False #kills the question
                                 USERCON = True #kills the user answer
@@ -119,6 +134,7 @@ while MENU == True:
                     except ValueError: #if the user enters letters instead of numbers
                         print "Enter only numbers"
             elif USER == 2:
+                clear()
                 bill_calc() #calls the function that prints my bill
                 bill() #call the function that will print my total and discount
                 deletedata() #calls the function to clear the selling list
