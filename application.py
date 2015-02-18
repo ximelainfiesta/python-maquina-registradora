@@ -6,6 +6,12 @@ PRICES = [] #List to keep the PRICES
 TOTAL = []
 
 """FUNCTIONS"""
+def deletedata():
+    """Function that clears the lists for a new sale"""
+    del CLIENT[:]
+    del PRICES[:]
+    del TOTAL[:]
+
 def total():
     """Function that adds the tax to the total"""
     return price() + tax()
@@ -115,8 +121,8 @@ while MENU == True:
             elif USER == 2:
                 bill_calc() #calls the function that prints my bill
                 bill() #call the function that will print my total and discount
+                deletedata() #calls the function to clear the selling list
                 MENU = True
-
             else:
                 print "Enter only numbers 1, 2 or 3" #if the user add other numbers other than 123
 
